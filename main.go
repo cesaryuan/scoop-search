@@ -25,7 +25,7 @@ type (
 
 var (
 	knownBuckets      map[string]string
-	scoopSearchApiKey string
+	scoopSearchApiKey string 
 )
 
 // resolves the path to scoop folder
@@ -62,7 +62,11 @@ func scoopKnownRepos() (res map[string]string) {
 func main() {
 	args := parseArgs()
 	knownBuckets = scoopKnownRepos()
-
+	// if SCOOP_SEARCH_API_KEY is set, use it. Otherwise, use the default key
+	if value, ok := os.LookupEnv("SCOOP_SEARCH_API_KEY"); ok {
+		scoopSearchApiKey = value
+	}
+	
 	// print posh hook and exit if requested
 	if args.hook {
 		fmt.Println(poshHook)
