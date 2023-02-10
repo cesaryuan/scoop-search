@@ -29,7 +29,7 @@ jobs:
 
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'shilangyu/scoop-search'
+        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'cesaryuan/scoop-search'
         with:
           files: |
             scoop-search.exe
