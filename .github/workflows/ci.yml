@@ -4,9 +4,9 @@ on:
   push:
     tags:
       - "v*.*.*"
-    branches: [master]
+    branches: [my]
   pull_request:
-    branches: [master]
+    branches: [my]
 
 jobs:
   build:
