@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/url"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -25,7 +26,7 @@ type (
 
 var (
 	knownBuckets      map[string]string
-	scoopSearchApiKey string 
+	scoopSearchApiKey string
 )
 
 // resolves the path to scoop folder
@@ -66,7 +67,7 @@ func main() {
 	if value, ok := os.LookupEnv("SCOOP_SEARCH_API_KEY"); ok {
 		scoopSearchApiKey = value
 	}
-	
+
 	// print posh hook and exit if requested
 	if args.hook {
 		fmt.Println(poshHook)
@@ -91,6 +92,8 @@ func main() {
 	if !hasResults {
 		fmt.Println("No results found.")
 		os.Exit(1)
+	} else {
+		fmt.Println("Go to scoop search website: https://scoop.sh/#/apps?q=" + url.QueryEscape(args.query) + "&s=0&d=1&o=false")
 	}
 }
 
